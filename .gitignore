@@ -1,0 +1,18 @@
+
+# Private environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Vercel local configuration
+.vercel/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

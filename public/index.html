@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Archimedes~Designs | Nfor Precious</title>
+  <meta name="description" content="Portfolio of Nfor Precious — graphic designer, photo editor and software developer. Explore designs, websites, software projects and client testimonials.">
+  <meta name="theme-color" content="#080b12">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/x-icon" href="assets/images/icons/Neon Blue A_D Monogram Icon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <style>
+    :root {
+      --bg: #080b12;
+      --surface: #0e1420;
+      --surface-2: #111a29;
+      --text: #f5f7fb;
+      --muted: #9ba8bc;
+      --blue: #3287ff;
+      --cyan: #45bdff;
+      --border: rgba(160,185,225,.16);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, input, textarea, select { font: inherit; }
+    section { scroll-margin-top: 90px; }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 100px 0;
+      isolation: isolate;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 13px;
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2,
+    .about-copy h2,
+    .contact-copy h2 {
+      margin: 0 0 16px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.14;
+      letter-spacing: -1.6px;
+    }
+
+    .section-heading p,
+    .about-copy p,
+    .contact-copy > p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .accent { color: var(--cyan); }
+
+    /* NAVIGATION */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,11,18,.94);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-container {
+      width: min(1200px, 92%);
+      min-height: 96px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    /* ==============================================
+       === EDIT HEADER LOGO SIZE HERE ===
+       Change width and height to resize header logo.
+       ============================================== */
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: transparent;
+      filter: drop-shadow(0 4px 12px rgba(69,189,255,.4));
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .primary-nav {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+    }
+
+    .primary-nav a {
+      color: #aeb8ca;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: color .25s ease;
+    }
+
+    .primary-nav a:hover,
+    .primary-nav a.active { color: var(--cyan); }
+
+    .primary-nav .nav-contact {
+      padding: 12px 16px;
+      border: 1px solid #24558e;
+      border-radius: 11px;
+      color: var(--cyan);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 43px;
+      height: 43px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* GEOMETRIC BACKGROUND SYSTEM */
+    .geometry-layer {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .geo-line {
+      position: absolute;
+      height: 1px;
+      width: 55%;
+      background: linear-gradient(90deg, transparent, rgba(65,180,255,.32), transparent);
+      transform-origin: center;
+      animation: line-drift 12s ease-in-out infinite alternate;
+    }
+
+    .geo-line.line-one { top: 22%; left: -8%; transform: rotate(-20deg); }
+    .geo-line.line-two { top: 68%; right: -8%; transform: rotate(-25deg); animation-delay: -5s; }
+    .geo-line.line-three { top: 48%; left: 25%; transform: rotate(32deg); animation-delay: -8s; }
+
+    .geo-shape {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      border: 1px solid rgba(63,169,255,.25);
+      animation: shape-float 12s ease-in-out infinite;
+    }
+
+    .geo-square { top: 15%; right: 9%; transform: rotate(25deg); }
+    .geo-diamond { left: 7%; bottom: 17%; width: 45px; height: 45px; transform: rotate(45deg); animation-delay: -4s; }
+    .geo-circle { top: 55%; right: 20%; width: 95px; height: 95px; border-radius: 50%; animation-delay: -7s; }
+    
+    .geo-triangle {
+      position: absolute;
+      right: 12%;
+      bottom: 13%;
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 54px solid rgba(65,180,255,.10);
+      animation: shape-float 10s ease-in-out infinite;
+    }
+
+    .geo-node {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 18px var(--cyan);
+      animation: node-pulse 3s ease-in-out infinite alternate;
+    }
+
+    .geo-node.node-one { top: 24%; left: 20%; }
+    .geo-node.node-two { top: 60%; right: 12%; animation-delay: -1s; }
+    .geo-node.node-three { bottom: 23%; left: 48%; animation-delay: -2s; }
+
+    @keyframes line-drift {
+      from { opacity: .25; translate: -2% 0; }
+      to { opacity: .8; translate: 3% 12px; }
+    }
+
+    @keyframes shape-float {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      50% { translate: 10px -20px; rotate: 12deg; }
+    }
+
+    @keyframes node-pulse {
+      from { opacity: .3; scale: .7; }
+      to { opacity: 1; scale: 1.5; }
+    }
+
+    /* =========================================
+       NEW HERO SECTION (MATCHING REFERENCE)
+       ========================================= */
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 96px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: #080b12;
+      padding: 60px 0;
+    }
+
+    .hero-slideshow,
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-slideshow { z-index: -3; }
+
+    .hero-slide {
+      position: absolute;
+      inset: -3%;
+      background-position: center;
+      background-size: cover;
+      opacity: 0;
+      filter: brightness(.25) saturate(.8);
+      transform: scale(1.08);
+      transition: opacity 1.5s ease, transform 8s linear;
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(8,11,18,.98), rgba(8,11,18,.85) 50%, rgba(8,11,18,.6)),
+        linear-gradient(0deg, var(--bg), transparent 40%);
+    }
+
+    .hero .geometry-layer { z-index: -1; }
+
+    .hero-content {
+      width: min(1200px, 92%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      margin: 0 0 24px;
+      font-size: clamp(44px, 5.5vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero h1 span.hero-line { display: block; }
+
+    .hero-description {
+      margin: 0 0 32px;
+      color: #b1bed0;
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+
+    .button-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #287cff, #42baff);
+      box-shadow: 0 8px 20px rgba(40,124,255,.3);
+    }
+
+    .button-primary:hover {
+      box-shadow: 0 12px 25px rgba(40,124,255,.45);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.04);
+      color: #fff;
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.4);
+    }
+
+    .hero-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-skills span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255,255,255,.03);
+      color: #c4cede;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .hero-skills i {
+      color: var(--cyan);
+    }
+
+    /* RIGHT SIDE: PROFILE IMAGE + FLOATING BADGES */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      min-height: 500px;
+    }
+
+    .hero-profile-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 450px;
+      aspect-ratio: 4 / 5;
+      border-radius: 30px;
+      border: 1px solid rgba(69,189,255,.3);
+      background: #0d121c;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(69,189,255,.1) inset;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .hero-profile-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-profile-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(8,11,18,.5), transparent 30%);
+      pointer-events: none;
+    }
+
+    /* FLOATING BADGES */
+    .floating-badge {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(14, 20, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      z-index: 3;
+      animation: float-badge 6s ease-in-out infinite;
+    }
+
+    .badge-1 {
+      top: 15%;
+      left: -8%;
+      animation-delay: 0s;
+    }
+
+    .badge-2 {
+      bottom: 15%;
+      right: -8%;
+      animation-delay: -3s;
+    }
+
+    .badge-icon {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(69,189,255,.15);
+      color: var(--cyan);
+      font-size: 16px;
+    }
+
+    .badge-content h4 {
+      margin: 0 0 2px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .badge-content p {
+      margin: 0;
+      font-size: 11px;
+      color: #9ba8bc;
+    }
+
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* HERO INDICATORS */
+    .hero-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .hero-indicator {
+      width: 30px;
+      height: 4px;
+      border: 0;
+      border-radius: 8px;
+      background: rgba(255,255,255,.2);
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+
+    .hero-indicator.is-active {
+      width: 50px;
+      background: var(--cyan);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .about-copy p { margin: 14px 0; }
+
+    .about-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 13px;
+      margin-top: 26px;
+    }
+
+    .fact-card,
+    .service-card,
+    .project-card,
+    .testimonial-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #101725, #0b1019);
+    }
+
+    .fact-card { padding: 19px; }
+    .fact-card i { color: var(--cyan); font-size: 21px; }
+    .fact-card h3 { margin: 12px 0 7px; font-size: 15px; }
+    .fact-card p { margin: 0; font-size: 12px; }
+
+    .about-visual {
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid #203b5d;
+      border-radius: 25px;
+      background: radial-gradient(circle, rgba(40,124,255,.18), transparent 60%), #0d121c;
+    }
+
+    .about-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(8,11,18,.75), transparent 45%);
+      pointer-events: none;
+      border-radius: 25px;
+    }
+
+    .about-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .about-visual-caption {
+      position: absolute;
+      bottom: 20px;
+      z-index: 1;
+      padding: 0 15px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 17px;
+    }
+
+    .service-card {
+      padding: 25px;
+      transition: transform .3s ease, border-color .3s ease;
+    }
+
+    .service-card:hover,
+    .project-card:hover,
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(69,189,255,.55);
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      border-radius: 13px;
+      background: rgba(51,145,255,.12);
+      color: var(--cyan);
+      font-size: 20px;
+    }
+
+    .service-card h3 { margin: 18px 0 10px; font-size: 17px; }
+    .service-card p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .text-link { color: var(--cyan); text-decoration: none; font-size: 12px; font-weight: 800; }
+
+    /* PROJECTS: SOFTWARE AND WEBSITES */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      transition: transform .3s ease, border-color .3s ease;
+    }
+
+    .project-preview {
+      position: relative;
+      min-height: 240px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(57,155,255,.25), transparent 42%),
+        linear-gradient(135deg, #111d30, #090e17);
+    }
+
+    .project-preview::before,
+    .project-preview::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(72,181,255,.22);
+      transform: rotate(35deg);
+    }
+
+    .project-preview::before { width: 180px; height: 180px; }
+    .project-preview::after { width: 250px; height: 250px; }
+
+    .project-preview-icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 88px;
+      border: 1px solid rgba(69,189,255,.4);
+      border-radius: 24px;
+      background: rgba(17,36,62,.9);
+      color: var(--cyan);
+      font-size: 36px;
+      box-shadow: 0 15px 45px rgba(0,0,0,.25);
+    }
+
+    .project-body { padding: 25px; }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .project-tags span {
+      padding: 6px 9px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: #b9c8dc;
+      font-size: 10px;
+    }
+
+    .project-body h3 { margin: 0 0 12px; font-size: 21px; }
+
+    .project-body p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .project-actions .button { min-height: 42px; padding: 0 14px; font-size: 12px; }
+
+    .project-status {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      margin-bottom: 13px;
+      color: #8ee8bb;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* =========================================
+       COVER FLOW GALLERY (AUTO-SLIDESHOW)
+       ========================================= */
+    .gallery-section { background: #090d15; }
+
+    .coverflow-container {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+      overflow: hidden;
+      margin: 20px auto;
+    }
+
+    .coverflow-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+    }
+
+    .coverflow-card {
+      position: absolute;
+      width: 380px;
+      height: 320px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #101622;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease, z-index 0s ease 0s;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .coverflow-card:active { cursor: grabbing; }
+
+    .coverflow-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .coverflow-card:hover img { transform: scale(1.05); }
+
+    .coverflow-card.center {
+      transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+      z-index: 5;
+      opacity: 1;
+    }
+
+    .coverflow-card.left-1 {
+      transform: translateX(-220px) translateZ(-120px) rotateY(30deg) scale(0.85);
+      z-index: 4;
+      opacity: 0.6;
+    }
+
+    .coverflow-card.right-1 {
+      transform: translateX(220px) translateZ(-120px) rotateY(-30deg) scale(0.85);
+      z-index: 4;
+      opacity: 0.6;
+    }
+
+    .coverflow-card.left-2 {
+      transform: translateX(-380px) translateZ(-250px) rotateY(45deg) scale(0.7);
+      z-index: 3;
+      opacity: 0.3;
+    }
+
+    .coverflow-card.right-2 {
+      transform: translateX(380px) translateZ(-250px) rotateY(-45deg) scale(0.7);
+      z-index: 3;
+      opacity: 0.3;
+    }
+
+    .coverflow-card.hidden {
+      transform: translateX(0) translateZ(-400px) scale(0.5);
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .coverflow-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(0deg, rgba(8,11,18,0.95) 0%, rgba(8,11,18,0) 100%);
+      pointer-events: none;
+    }
+
+    .coverflow-overlay h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .coverflow-overlay span {
+      display: block;
+      margin-top: 4px;
+      color: var(--cyan);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .coverflow-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(8,11,18,0.8);
+      color: var(--cyan);
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s ease, transform 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .coverflow-nav:hover {
+      background: rgba(40,124,255,0.4);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .coverflow-nav.prev { left: 5%; }
+    .coverflow-nav.next { right: 5%; }
+
+    @media (max-width: 900px) {
+      .coverflow-container { height: 350px; }
+      .coverflow-card { width: 300px; height: 260px; }
+      .coverflow-card.left-1 { transform: translateX(-160px) translateZ(-100px) rotateY(25deg) scale(0.85); }
+      .coverflow-card.right-1 { transform: translateX(160px) translateZ(-100px) rotateY(-25deg) scale(0.85); }
+      .coverflow-card.left-2 { transform: translateX(-280px) translateZ(-200px) rotateY(40deg) scale(0.7); }
+      .coverflow-card.right-2 { transform: translateX(280px) translateZ(-200px) rotateY(-40deg) scale(0.7); }
+      .coverflow-nav.prev { left: 2%; }
+      .coverflow-nav.next { right: 2%; }
+    }
+
+    @media (max-width: 600px) {
+      .coverflow-container { height: 280px; }
+      .coverflow-card { width: 220px; height: 200px; }
+      .coverflow-card.left-1 { transform: translateX(-110px) translateZ(-80px) rotateY(20deg) scale(0.8); }
+      .coverflow-card.right-1 { transform: translateX(110px) translateZ(-80px) rotateY(-20deg) scale(0.8); }
+      .coverflow-card.left-2 { transform: translateX(-180px) translateZ(-150px) rotateY(35deg) scale(0.65); }
+      .coverflow-card.right-2 { transform: translateX(180px) translateZ(-150px) rotateY(-35deg) scale(0.65); }
+      .coverflow-nav { width: 38px; height: 38px; font-size: 14px; }
+      .coverflow-overlay { padding: 12px; }
+      .coverflow-overlay h3 { font-size: 13px; }
+      .coverflow-overlay span { font-size: 9px; }
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background:
+        radial-gradient(circle at 5% 30%, rgba(33,115,255,.08), transparent 30%),
+        #080b12;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .testimonial-card {
+      overflow: hidden;
+      padding: 22px;
+      transition: transform .3s ease, border-color .3s ease;
+    }
+
+    .testimonial-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 17px;
+    }
+
+    .testimonial-avatar {
+      flex: 0 0 55px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(69,189,255,.45);
+      background: #172338;
+    }
+
+    .testimonial-name { margin: 0 0 5px; font-size: 14px; }
+    .testimonial-role { color: var(--muted); font-size: 11px; }
+
+    .testimonial-stars {
+      margin-bottom: 13px;
+      color: #ffc85a;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+
+    .testimonial-quote {
+      margin: 0;
+      color: #bdc8d8;
+      font-size: 13px;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .testimonial-proof {
+      display: block;
+      width: 100%;
+      max-height: 270px;
+      margin-top: 18px;
+      object-fit: contain;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #090e17;
+      cursor: zoom-in;
+    }
+
+    .testimonial-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 110px;
+      margin-top: 18px;
+      border: 1px dashed #33455e;
+      border-radius: 12px;
+      color: #71819a;
+      font-size: 12px;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .testimonial-placeholder i {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--cyan);
+      font-size: 23px;
+    }
+
+    .testimonial-disclaimer {
+      margin-top: 25px;
+      color: #7f8da3;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .contact-details { display: grid; gap: 15px; margin-top: 28px; }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-detail > i {
+      display: grid;
+      place-items: center;
+      flex: 0 0 43px;
+      width: 43px;
+      height: 43px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--cyan);
+      background: var(--surface);
+    }
+
+    .contact-detail strong { font-size: 12px; }
+    .contact-detail a, .contact-detail span { color: #b8c4d5; font-size: 12px; text-decoration: none; }
+    .contact-detail a:hover { color: var(--cyan); }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: #0d121c;
+    }
+
+    .form-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+    .form-field { display: grid; gap: 8px; min-width: 0; }
+    .form-field label { color: #d5ddea; font-size: 12px; font-weight: 700; }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      min-height: 45px;
+      padding: 12px;
+      border: 1px solid #29354a;
+      border-radius: 10px;
+      outline: none;
+      background: #080d15;
+      color: white;
+      font-size: 12px;
+    }
+
+    .form-field textarea { min-height: 130px; resize: vertical; }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(50,135,255,.12);
+    }
+
+    .consent-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .consent-field input { margin-top: 3px; accent-color: var(--blue); }
+
+    .submit-button {
+      min-height: 47px;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #287cff, #42baff);
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .submit-button:disabled { opacity: .65; cursor: wait; }
+
+    .form-status {
+      display: none;
+      padding: 12px;
+      border-radius: 9px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .form-status:not(:empty) { display: block; }
+    .form-status.is-success { color: #8ef0c1; background: rgba(34,197,94,.1); }
+    .form-status.is-error { color: #ffaaaa; background: rgba(239,68,68,.1); }
+
+    .honeypot {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      clip: rect(0,0,0,0) !important;
+    }
+
+    /* FOOTER AND LIGHTBOX */
+    .site-footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      background: #070a10;
+    }
+
+    .footer-inner {
+      width: min(1200px,92%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .footer-copy { color: #8390a4; font-size: 11px; line-height: 1.9; }
+
+    /* ==============================================
+       === EDIT FOOTER LOGO SIZE HERE ===
+       Change width and height to resize footer logo.
+       ============================================== */
+    .footer-brand-mark {
+      display: grid;
+      place-items: center;
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 4px 15px rgba(69,189,255,.5));
+    }
+
+    .footer-brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .social-links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .social-links a {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #253146;
+      border-radius: 11px;
+      color: #b8c4d5;
+      text-decoration: none;
+      transition: .25s ease;
+    }
+
+    .social-links a:hover { color: white; background: #176bd8; border-color: #287cff; }
+
+    .back-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 900;
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border: 1px solid #2b69a8;
+      border-radius: 13px;
+      background: #101725;
+      color: var(--cyan);
+      text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s ease;
+    }
+
+    .back-to-top.is-visible { opacity: 1; visibility: visible; }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      place-items: center;
+      padding: 25px;
+      background: rgba(3,5,10,.95);
+    }
+
+    .lightbox.is-open { display: grid; }
+
+    .lightbox-content {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      max-width: min(1100px,100%);
+      max-height: 100%;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-caption { color: #dce3ee; font-size: 12px; text-align: center; }
+
+    .lightbox-close {
+      position: absolute;
+      top: -17px;
+      right: -17px;
+      z-index: 1;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #46536a;
+      border-radius: 50%;
+      background: #101725;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1000px) {
+      .primary-nav { gap: 13px; }
+      .primary-nav a { font-size: 11px; }
+      .testimonial-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      
+      .hero-content { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+      .hero-copy { margin: 0 auto; }
+      .hero-actions, .hero-skills { justify-content: center; }
+      .hero-visual { min-height: 400px; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-container { min-height: 80px; }
+      
+      /* ==============================================
+         === EDIT MOBILE HEADER LOGO SIZE HERE ===
+         ============================================== */
+      .brand-mark { width: 56px; height: 56px; }
+      
+      .nav-toggle { display: grid; place-items: center; }
+
+      .primary-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 4% 20px;
+        border-bottom: 1px solid var(--border);
+        background: #080b12;
+      }
+
+      .primary-nav.is-open { display: flex; }
+      .primary-nav a { padding: 13px 8px; font-size: 13px; }
+      .primary-nav .nav-contact { text-align: center; margin-top: 6px; }
+
+      .hero { min-height: auto; padding: 80px 0; }
+      .hero h1 { letter-spacing: -2px; }
+      
+      .badge-1 { left: -2%; top: 10%; }
+      .badge-2 { right: -2%; bottom: 10%; }
+
+      .section { padding: 72px 0; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .project-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      
+      .footer-brand-mark { width: 75px; height: 75px; }
+    }
+
+    @media (max-width: 460px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .button { width: 100%; }
+      .services-grid, .testimonial-grid { grid-template-columns: 1fr; }
+      .about-facts { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 19px; }
+      .lightbox { padding: 14px; }
+      .lightbox-close { top: -12px; right: -5px; }
+      
+      .floating-badge { padding: 10px 14px; }
+      .badge-icon { width: 30px; height: 30px; font-size: 14px; }
+      .badge-content h4 { font-size: 11px; }
+      .badge-content p { font-size: 9px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a class="brand" href="#top" aria-label="Archimedes Designs home">
+        <!-- LOGO ONLY -->
+        <span class="brand-mark">
+          <img src="assets/images/icons/Archimedes Designs Blue Monogram Logo.png" alt="Archimedes~Designs Logo">
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Open navigation menu"
+        aria-expanded="false" aria-controls="primary-nav">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#software-projects">Software</a>
+        <a href="#designs">Designs</a>
+        <a href="#photo-editing">Photo Editing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a class="nav-contact" href="#contact">Contact <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =========================================
+         NEW HERO SECTION (MATCHING REFERENCE)
+         ========================================= -->
+    <section class="hero" id="home">
+      <div class="hero-slideshow" aria-hidden="true">
+        <div class="hero-slide is-active" style="background-image:url('assets/images/designs/Grand%20Opening.png')"></div>
+        <div class="hero-slide" style="background-image:url('assets/images/designs/Galaxy%20Tech%202.png')"></div>
+        <div class="hero-slide" style="background-image:url('assets/images/designs/Family%20time.png')"></div>
+      </div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="geometry-layer" aria-hidden="true">
+        <span class="geo-line line-one"></span>
+        <span class="geo-line line-two"></span>
+        <span class="geo-line line-three"></span>
+        <span class="geo-shape geo-square"></span>
+        <span class="geo-shape geo-diamond"></span>
+        <span class="geo-shape geo-circle"></span>
+        <span class="geo-triangle"></span>
+        <span class="geo-node node-one"></span>
+        <span class="geo-node node-two"></span>
+        <span class="geo-node node-three"></span>
+      </div>
+
+      <div class="hero-content">
+        <!-- LEFT: TEXT CONTENT -->
+        <div class="hero-copy reveal">
+          <h1>
+            <span class="hero-line">Designing Ideas.</span>
+            <span class="hero-line">Building <span class="accent">Experiences.</span></span>
+          </h1>
+
+          <p class="hero-description">
+            I'm <strong>Nfor Precious</strong>, the creative mind behind Archimedes~Designs.
+            I combine graphic design, photo editing and software development to create
+            meaningful visuals and useful digital experiences.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#designs">Explore My Designs <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="button button-secondary" href="#contact">Let's Work Together <i class="fa-solid fa-paper-plane"></i></a>
+          </div>
+
+          <div class="hero-skills">
+            <span><i class="fa-solid fa-pen-nib"></i> Graphic Design</span>
+            <span><i class="fa-solid fa-camera"></i> Photo Editing</span>
+            <span><i class="fa-solid fa-code"></i> Software Dev</span>
+            <span><i class="fa-solid fa-globe"></i> Websites</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: PROFILE IMAGE + FLOATING BADGES -->
+        <div class="hero-visual reveal">
+          
+          <!-- Floating Badge 1 (Top Left) -->
+          <div class="floating-badge badge-1">
+            <div class="badge-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="badge-content">
+              <h4>Available for work</h4>
+              <p>Open to new projects</p>
+            </div>
+          </div>
+
+          <!-- Profile Image -->
+          <div class="hero-profile-wrapper">
+            <img src="assets/images/profile/Profile.png"
+                 alt="Portrait of Nfor Precious, founder of Archimedes~Designs"
+                 loading="eager" width="480" height="600">
+          </div>
+
+          <!-- Floating Badge 2 (Bottom Right) -->
+          <div class="floating-badge badge-2">
+            <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
+            <div class="badge-content">
+              <h4>5+ Years Experience</h4>
+              <p>Creative & Technical</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Slideshow Controls -->
+      <div class="hero-indicators" aria-label="Hero slideshow controls">
+        <button class="hero-indicator is-active" data-slide="0" aria-label="Show slide 1" type="button"></button>
+        <button class="hero-indicator" data-slide="1" aria-label="Show slide 2" type="button"></button>
+        <button class="hero-indicator" data-slide="2" aria-label="Show slide 3" type="button"></button>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="geometry-layer" aria-hidden="true">
+        <span class="geo-line line-two"></span>
+        <span class="geo-shape geo-circle"></span>
+        <span class="geo-node node-one"></span>
+      </div>
+
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <span class="eyebrow">Get to know me</span>
+          <h2>Creativity meets <span class="accent">technology.</span></h2>
+
+          <p>
+            I'm Nfor Precious, a graphic designer and software engineering enthusiast
+            building my skills in design, image enhancement, and web development.
+          </p>
+          <p>
+            Through Archimedes~Designs, I focus on visual communication, branding,
+            promotional graphics and digital experiences that help individuals and
+            businesses present their ideas professionally.
+          </p>
+          <p>
+            I value continuous learning, creative problem-solving and collaboration.
+            Every project is an opportunity to improve and deliver work with purpose.
+          </p>
+
+          <div class="about-facts">
+            <article class="fact-card"><i class="fa-solid fa-palette"></i><h3>Creative Design</h3><p>Visual identity, flyers and brand materials.</p></article>
+            <article class="fact-card"><i class="fa-solid fa-code"></i><h3>Development</h3><p>Web interfaces and practical digital solutions.</p></article>
+            <article class="fact-card"><i class="fa-solid fa-image"></i><h3>Photo Editing</h3><p>Portrait enhancement and image refinement.</p></article>
+            <article class="fact-card"><i class="fa-solid fa-arrow-trend-up"></i><h3>Growth</h3><p>Learning, experimenting and improving.</p></article>
+          </div>
+        </div>
+
+        <div class="about-visual reveal">
+          <img class="about-photo"
+               src="assets/images/profile/about_image.png"
+               alt="Nfor Precious — creative designer and developer behind Archimedes~Designs"
+               loading="lazy" width="600" height="700">
+          <p class="about-visual-caption">ARCHIMEDES~DESIGNS — Creativity with purpose.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">What I do</span>
+          <h2>Creative services. <span class="accent">Digital solutions.</span></h2>
+          <p>Services built around visual communication, branding and digital experiences.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div><h3>Graphic Design</h3><p>Flyers, posters, banners, invitations and promotional materials.</p><a class="text-link" href="#designs">Explore designs →</a></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-fingerprint"></i></div><h3>Branding & Identity</h3><p>Consistent visual materials for businesses, products and campaigns.</p><a class="text-link" href="#designs">View portfolio →</a></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-camera-retro"></i></div><h3>Photo Editing</h3><p>Portrait retouching, colour correction and polished image presentation.</p><a class="text-link" href="#photo-editing">View photo edits →</a></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Software Development</h3><p>Software projects and practical digital tools designed around user needs.</p><a class="text-link" href="#software-projects">View projects →</a></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-globe"></i></div><h3>Website Development</h3><p>Responsive website interfaces with attention to usability and presentation.</p><a class="text-link" href="#software-projects">View websites →</a></article>
+          <article class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-clapperboard"></i></div><h3>Visual Media</h3><p>Digital visuals for campaigns, online communication and brand presentation.</p><a class="text-link" href="#contact">Discuss a project →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOFTWARE PROJECTS AND WEBSITES -->
+    <section class="section" id="software-projects">
+      <div class="geometry-layer" aria-hidden="true">
+        <span class="geo-line line-one"></span>
+        <span class="geo-line line-three"></span>
+        <span class="geo-shape geo-square"></span>
+        <span class="geo-shape geo-diamond"></span>
+        <span class="geo-node node-two"></span>
+      </div>
+
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Development portfolio</span>
+          <h2>Software projects & <span class="accent">websites.</span></h2>
+          <p>
+            Explore digital projects and websites I've contributed to or built.
+            Use the live project links to open the websites in a new tab.
+          </p>
+        </div>
+
+        <div class="project-grid">
+
+          <article class="project-card reveal">
+            <div class="project-preview">
+              <div class="project-preview-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            </div>
+
+            <div class="project-body">
+              <span class="project-status"><i class="fa-solid fa-circle-check"></i> Live project link</span>
+              <div class="project-tags">
+                <span>Education</span><span>Student Portal</span><span>Faella ICT</span>
+              </div>
+              <h3>Student Portal — Faella ICT</h3>
+              <p>
+                A student portal associated with Faella ICT. Visit the live portal
+                to explore its available student-facing features and services.
+              </p>
+              <div class="project-actions">
+                <a class="button button-primary" href="https://student.faellaict.com/" target="_blank" rel="noopener noreferrer">
+                  Open Student Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-preview">
+              <div class="project-preview-icon"><i class="fa-solid fa-broom"></i></div>
+            </div>
+
+            <div class="project-body">
+              <span class="project-status"><i class="fa-solid fa-circle-check"></i> Live website link</span>
+              <div class="project-tags">
+                <span>Business Website</span><span>Cleaning Services</span><span>Web Development</span>
+              </div>
+              <h3>TETCORE PROCLEANING</h3>
+              <p>
+                A website for a professional cleaning services brand, providing
+                an online presence for visitors to explore its business offering.
+              </p>
+              <div class="project-actions">
+                <a class="button button-primary" href="https://tetcore-procleaning.vercel.app/" target="_blank" rel="noopener noreferrer">
+                  Visit Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="gallery-note">
+          Add more projects by duplicating a project card and updating its title,
+          description, technology tags and live website link.
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================
+         GRAPHIC DESIGN GALLERY (COVER FLOW)
+         ========================================= -->
+    <section class="section gallery-section" id="designs">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Creative portfolio</span>
+          <h2>Graphic <span class="accent">designs.</span></h2>
+          <p>Browse business graphics, signage, promotional flyers and other creative work. Swipe or use the arrows to navigate.</p>
+        </div>
+
+        <!-- COVER FLOW CAROUSEL -->
+        <div class="coverflow-container" id="design-coverflow">
+          <button class="coverflow-nav prev" aria-label="Previous design"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="coverflow-nav next" aria-label="Next design"><i class="fa-solid fa-chevron-right"></i></button>
+          <div class="coverflow-track"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         PHOTO EDITING GALLERY (COVER FLOW)
+         ========================================= -->
+    <section class="section gallery-section" id="photo-editing">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Image enhancement</span>
+          <h2>Photo <span class="accent">editing.</span></h2>
+          <p>Portrait edits, studio images and creative image enhancement projects. Swipe or use the arrows to navigate.</p>
+        </div>
+
+        <!-- COVER FLOW CAROUSEL -->
+        <div class="coverflow-container" id="photo-coverflow">
+          <button class="coverflow-nav prev" aria-label="Previous photo edit"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="coverflow-nav next" aria-label="Next photo edit"><i class="fa-solid fa-chevron-right"></i></button>
+          <div class="coverflow-track"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         TESTIMONIALS (COVER FLOW)
+         ========================================= -->
+    <section class="section testimonials-section" id="testimonials">
+      <div class="geometry-layer" aria-hidden="true">
+        <span class="geo-line line-one"></span>
+        <span class="geo-shape geo-circle"></span>
+        <span class="geo-shape geo-diamond"></span>
+        <span class="geo-node node-three"></span>
+      </div>
+
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Client feedback</span>
+          <h2>What clients say about <span class="accent">my work.</span></h2>
+          <p>Client feedback matters. Swipe or use the arrows to browse testimonials.</p>
+        </div>
+
+        <!-- COVER FLOW CAROUSEL -->
+        <div class="coverflow-container" id="testimonial-coverflow">
+          <button class="coverflow-nav prev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="coverflow-nav next" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+          <div class="coverflow-track"></div>
+        </div>
+
+        <p class="testimonial-disclaimer">
+          The testimonial cards above are editable placeholders. Replace the sample
+          names, ratings and text with genuine client-approved feedback before publishing.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="geometry-layer" aria-hidden="true">
+        <span class="geo-line line-two"></span>
+        <span class="geo-shape geo-square"></span>
+        <span class="geo-node node-one"></span>
+      </div>
+
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">Let's work together</span>
+          <h2>Have an idea? Let's make it <span class="accent">happen.</span></h2>
+          <p>
+            Need a graphic design, photo edit, brand visual, software solution or website?
+            Send your project details and let's discuss the next steps.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-detail"><i class="fa-regular fa-envelope"></i><div><strong>Email</strong><br><a href="mailto:lamngwapreciousnfor@gmail.com">lamngwapreciousnfor@gmail.com</a></div></div>
+            <div class="contact-detail"><i class="fa-brands fa-facebook-f"></i><div><strong>Facebook</strong><br><a href="https://www.facebook.com/profile.php?id=61580188757367" target="_blank" rel="noopener noreferrer">Visit my Facebook profile</a></div></div>
+            <div class="contact-detail"><i class="fa-brands fa-linkedin-in"></i><div><strong>LinkedIn</strong><br><a href="https://www.linkedin.com/in/lamngwa-precious-nfor-54429b33a/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a></div></div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form" action="/api/contact" method="POST">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="contact-name">Your name *</label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Enter your name" required>
+            </div>
+            <div class="form-field">
+              <label for="contact-email">Email address *</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="contact-service">Service required *</label>
+              <select id="contact-service" name="service" required>
+                <option value="">Select a service</option>
+                <option>Graphic Design</option>
+                <option>Brand Identity</option>
+                <option>Photo Editing</option>
+                <option>Website Development</option>
+                <option>Software Development</option>
+                <option>Visual Media</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="contact-budget">Estimated budget</label>
+              <select id="contact-budget" name="budget">
+                <option value="">Select a budget</option>
+                <option>To be discussed</option>
+                <option>Under 10,000 FCFA</option>
+                <option>10,000–25,000 FCFA</option>
+                <option>25,000–50,000 FCFA</option>
+                <option>50,000+ FCFA</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-message">Project details *</label>
+            <textarea id="contact-message" name="message" minlength="10" maxlength="5000" placeholder="Describe your idea, requirements and deadline..." required></textarea>
+          </div>
+
+          <div class="honeypot" aria-hidden="true">
+            <label for="contact-website">Leave this field empty</label>
+            <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <label class="consent-field" for="contact-consent">
+            <input id="contact-consent" name="consent" type="checkbox" value="yes" required>
+            <span>I agree to have the information I submit used to respond to my enquiry.</span>
+          </label>
+
+          <button class="submit-button" type="submit">
+            <span class="submit-label">Send Project Enquiry</span>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+
+          <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+          <p style="margin:0;color:#8390a4;font-size:11px;line-height:1.7">
+            Email delivery requires the server-side /api/contact endpoint and Resend configuration.
+          </p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        <!-- FOOTER LOGO ONLY -->
+        <a class="brand" href="#top" aria-label="Archimedes Designs home">
+          <span class="footer-brand-mark">
+            <img src="assets/images/icons/Archimedes Designs Blue Monogram Logo.png" alt="Archimedes~Designs Logo">
+          </span>
+        </a>
+        <div>© <span id="current-year"></span> Archimedes~Designs. Created by Nfor Precious.</div>
+        <div>Creativity with purpose. Technology with vision.</div>
+      </div>
+
+      <div class="social-links" aria-label="Social profiles">
+        <a href="https://www.facebook.com/profile.php?id=61580188757367" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/lamngwa-precious-nfor-54429b33a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:lamngwapreciousnfor@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" href="#top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+  <!-- IMAGE LIGHTBOX -->
+  <div class="lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Expanded portfolio image">
+    <div class="lightbox-content">
+      <button class="lightbox-close" type="button" aria-label="Close image"><i class="fa-solid fa-xmark"></i></button>
+      <img id="lightbox-image" src="" alt="">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- PAGE INTERACTIONS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Footer year
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      // Mobile navigation
+      const navToggle = document.querySelector(".nav-toggle");
+      const nav = document.getElementById("primary-nav");
+      const navIcon = navToggle.querySelector("i");
+
+      function closeNav() {
+        nav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Open navigation menu");
+        navIcon.className = "fa-solid fa-bars";
+      }
+
+      navToggle.addEventListener("click", function () {
+        const opened = nav.classList.toggle("is-open");
+        navToggle.setAttribute("aria-expanded", String(opened));
+        navToggle.setAttribute("aria-label", opened ? "Close navigation menu" : "Open navigation menu");
+        navIcon.className = opened ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+      });
+
+      nav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeNav));
+      window.addEventListener("resize", () => { if (innerWidth > 760) closeNav(); });
+
+      // Hero slideshow
+      const slides = [...document.querySelectorAll(".hero-slide")];
+      const indicators = [...document.querySelectorAll(".hero-indicator")];
+      let activeSlide = 0;
+      let timer = null;
+
+      function showSlide(index) {
+        if (!slides.length) return;
+        activeSlide = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle("is-active", i === activeSlide));
+        indicators.forEach((button, i) => {
+          button.classList.toggle("is-active", i === activeSlide);
+          button.setAttribute("aria-pressed", String(i === activeSlide));
+        });
+      }
+
+      function stopSlides() {
+        if (timer) clearInterval(timer);
+        timer = null;
+      }
+
+      function startSlides() {
+        stopSlides();
+        if (reducedMotion || slides.length < 2) return;
+        timer = setInterval(() => showSlide(activeSlide + 1), 5000);
+      }
+
+      indicators.forEach(button => button.addEventListener("click", () => {
+        showSlide(Number(button.dataset.slide) || 0);
+        startSlides();
+      }));
+
+      // Pause on hover for hero section
+      const heroSection = document.getElementById("home");
+      heroSection.addEventListener("mouseenter", stopSlides);
+      heroSection.addEventListener("mouseleave", startSlides);
+      
+      showSlide(0);
+      startSlides();
+
+      // =========================================
+      // COVER FLOW GALLERY LOGIC
+      // =========================================
+      
+      function initCoverFlow(containerId, items) {
+        const container = document.getElementById(containerId);
+        if (!container || !items.length) return;
+        
+        const track = container.querySelector('.coverflow-track');
+        const prevBtn = container.querySelector('.prev');
+        const nextBtn = container.querySelector('.next');
+        
+        let currentIndex = 0;
+        let autoPlayTimer = null;
+        const autoPlayInterval = 4000;
+
+        // Create DOM elements
+        items.forEach((item, index) => {
+          const card = document.createElement('div');
+          card.className = 'coverflow-card';
+          card.innerHTML = `
+            <img src="${item.src}" alt="${item.alt || item.title}" loading="lazy">
+            <div class="coverflow-overlay">
+              <h3>${item.title || ''}</h3>
+              <span>${item.category || ''}</span>
+            </div>
+          `;
+          
+          card.addEventListener('click', (e) => {
+            if (card.classList.contains('center')) {
+              openLightbox(item.src, item.title);
+            } else {
+              goTo(index);
+            }
+          });
+          
+          track.appendChild(card);
+        });
+
+        const cards = [...track.querySelectorAll('.coverflow-card')];
+
+        function updateClasses() {
+          cards.forEach((card, i) => {
+            card.className = 'coverflow-card';
+            if (i === currentIndex) {
+              card.classList.add('center');
+            } else if (i === (currentIndex - 1 + items.length) % items.length) {
+              card.classList.add('left-1');
+            } else if (i === (currentIndex + 1) % items.length) {
+              card.classList.add('right-1');
+            } else if (i === (currentIndex - 2 + items.length) % items.length) {
+              card.classList.add('left-2');
+            } else if (i === (currentIndex + 2) % items.length) {
+              card.classList.add('right-2');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        }
+
+        function goTo(index) {
+          currentIndex = (index + items.length) % items.length;
+          updateClasses();
+          resetAutoPlay();
+        }
+
+        function next() { goTo(currentIndex + 1); }
+        function prev() { goTo(currentIndex - 1); }
+
+        function startAutoPlay() {
+          if (reducedMotion) return;
+          stopAutoPlay();
+          autoPlayTimer = setInterval(next, autoPlayInterval);
+        }
+
+        function stopAutoPlay() {
+          if (autoPlayTimer) clearInterval(autoPlayTimer);
+          autoPlayTimer = null;
+        }
+
+        function resetAutoPlay() {
+          stopAutoPlay();
+          startAutoPlay();
+        }
+
+        nextBtn.addEventListener('click', next);
+        prevBtn.addEventListener('click', prev);
+        
+        container.addEventListener('mouseenter', stopAutoPlay);
+        container.addEventListener('mouseleave', startAutoPlay);
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        container.addEventListener('touchstart', e => {
+          touchStartX = e.changedTouches[0].screenX;
+          stopAutoPlay();
+        }, {passive: true});
+        
+        container.addEventListener('touchend', e => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+          startAutoPlay();
+        }, {passive: true});
+        
+        function handleSwipe() {
+          if (touchEndX < touchStartX - 50) next();
+          if (touchEndX > touchStartX + 50) prev();
+        }
+
+        updateClasses();
+        startAutoPlay();
+      }
+
+      // 1. DESIGNS DATA (EXACT PATHS PROVIDED)
+      const designItems = [
+        { src: "assets/images/designs/Administrative Office Door Label 30cm by 10cm.png", title: "Administrative Office Door Label", category: "Branding & Signage" },
+        { src: "assets/images/designs/Artistry 360 Door Label 30cm by 10cm.png", title: "Artistry 360 Door Label", category: "Branding & Signage" },
+        { src: "assets/images/designs/Digital Hub Door Label 30cm by 10cm.png", title: "Digital Hub Door Label", category: "Branding & Signage" },
+        { src: "assets/images/designs/Family time.png", title: "Family Time", category: "Creative Design" },
+        { src: "assets/images/designs/Galaxy Tech 2.png", title: "Galaxy Tech 2", category: "Business Graphics" },
+        { src: "assets/images/designs/Grand Opening & Menu.png", title: "Grand Opening & Menu", category: "Food & Promotion" },
+        { src: "assets/images/designs/Grand Opening.png", title: "Grand Opening", category: "Promotional Design" },
+        { src: "assets/images/designs/HNM AUGUST.png", title: "HNM August", category: "Promotional Design" },
+        { src: "assets/images/designs/KATU BIRTHDAY FLYER.png", title: "Katu Birthday Flyer", category: "Event Graphics" },
+        { src: "assets/images/designs/Photo and Video Studio Door Label 30cm by 10cm.png", title: "Photo & Video Studio Door Label", category: "Branding & Signage" },
+        { src: "assets/images/designs/slide door down 61cm by 85cm.png", title: "Slide Door — Down", category: "Signage" },
+        { src: "assets/images/designs/slide door left up 61cm by 85cm.png", title: "Slide Door — Left Up", category: "Signage" },
+        { src: "assets/images/designs/slide door up 61cm by 85cm.png", title: "Slide Door — Up", category: "Signage" },
+        { src: "assets/images/designs/Welcome Design.png", title: "Welcome Design", category: "Creative Design" }
+      ];
+
+      // 2. PHOTO EDITING DATA (EXACT PATHS PROVIDED)
+      const photoItems = [
+        { src: "assets/images/photo editing/1 copy 2.png", title: "Creative Edit 01", category: "Creative Editing" },
+        { src: "assets/images/photo editing/1.png", title: "Creative Edit 02", category: "Creative Editing" },
+        { src: "assets/images/photo editing/2.png", title: "Creative Edit 03", category: "Image Enhancement" },
+        { src: "assets/images/photo editing/3.png", title: "Creative Edit 04", category: "Image Enhancement" },
+        { src: "assets/images/photo editing/1775023249538.jpg", title: "Portrait Edit", category: "Portrait Retouching" },
+        { src: "assets/images/photo editing/Ceci Birthday Shoot.png", title: "Ceci Birthday Shoot", category: "Birthday Photography" },
+        { src: "assets/images/photo editing/Ceci Birthday Shoot2.png", title: "Ceci Birthday Shoot 02", category: "Birthday Photography" },
+        { src: "assets/images/photo editing/Ceci Birthday shoot3 revised.png", title: "Ceci Birthday Shoot 03 — Revised", category: "Photo Refinement" },
+        { src: "assets/images/photo editing/Ceci Birthday shoot3.png", title: "Ceci Birthday Shoot 03", category: "Birthday Photography" },
+        { src: "assets/images/photo editing/Ceci Birthday Shoot4.png", title: "Ceci Birthday Shoot 04", category: "Birthday Photography" },
+        { src: "assets/images/photo editing/kem.png", title: "Kem", category: "Portrait Editing" },
+        { src: "assets/images/photo editing/Kid copy.png", title: "Kid Portrait — Alternate", category: "Portrait Editing" },
+        { src: "assets/images/photo editing/Kid studio.png", title: "Kid Studio Portrait", category: "Studio Portrait" },
+        { src: "assets/images/photo editing/Kid.png", title: "Kid Portrait", category: "Portrait Editing" }
+      ];
+
+      // 3. TESTIMONIAL DATA
+      const testimonialItems = [
+        { src: "assets/images/testimonials/testimonial-1.png", title: "Client Name", category: "Graphic Design Client" },
+        { src: "assets/images/testimonials/testimonial-2.png", title: "Client Name", category: "Photo Editing Client" },
+        { src: "assets/images/testimonials/testimonial-3.png", title: "Client Name", category: "Business / Website Client" },
+        { src: "assets/images/testimonials/testimonial-1.png", title: "Client Name", category: "Graphic Design Client" },
+        { src: "assets/images/testimonials/testimonial-2.png", title: "Client Name", category: "Photo Editing Client" },
+        { src: "assets/images/testimonials/testimonial-3.png", title: "Client Name", category: "Business / Website Client" }
+      ];
+
+      initCoverFlow('design-coverflow', designItems);
+      initCoverFlow('photo-coverflow', photoItems);
+      initCoverFlow('testimonial-coverflow', testimonialItems);
+
+      // =========================================
+      // LIGHTBOX LOGIC
+      // =========================================
+      const lightbox = document.getElementById("image-lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const closeButton = document.querySelector(".lightbox-close");
+      let lastFocus = null;
+
+      window.openLightbox = function(src, caption) {
+        lastFocus = document.activeElement;
+        lightboxImage.src = src;
+        lightboxImage.alt = caption || "Portfolio image";
+        lightboxCaption.textContent = caption || "Portfolio image";
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        closeButton.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("is-open");
+        document.body.style.overflow = "";
+        lightboxImage.src = "";
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      closeButton.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", event => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+      });
+
+      // Scroll reveal
+      const revealItems = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window && !reducedMotion) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+
+        revealItems.forEach(item => revealObserver.observe(item));
+      } else {
+        revealItems.forEach(item => item.classList.add("is-visible"));
+      }
+
+      // Active navigation state
+      const navLinks = [...document.querySelectorAll(".primary-nav a[href^='#']")];
+      const observedSections = navLinks
+        .map(link => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach(link => {
+              link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+            });
+          });
+        }, { rootMargin: "-25% 0px -60% 0px" });
+
+        observedSections.forEach(section => sectionObserver.observe(section));
+      }
+
+      // Back to top
+      const backToTop = document.querySelector(".back-to-top");
+      function updateBackToTop() {
+        backToTop.classList.toggle("is-visible", window.scrollY > 450);
+      }
+      window.addEventListener("scroll", updateBackToTop, { passive: true });
+      updateBackToTop();
+
+      // Contact form
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("contact-status");
+      const submitButton = form.querySelector(".submit-button");
+      const submitLabel = form.querySelector(".submit-label");
+
+      form.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        status.textContent = "";
+        status.className = "form-status";
+        submitButton.disabled = true;
+        submitLabel.textContent = "Sending...";
+
+        try {
+          const data = Object.fromEntries(new FormData(form).entries());
+          const response = await fetch(form.action, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+
+          let result = {};
+          try { result = await response.json(); } catch (_) {}
+
+          if (!response.ok) {
+            throw new Error(result.message || "Unable to send your enquiry. Please try again.");
+          }
+
+          status.textContent = result.message || "Your enquiry has been submitted successfully.";
+          status.classList.add("is-success");
+          form.reset();
+        } catch (error) {
+          status.textContent = error.message || "Could not send your enquiry. Please email lamngwapreciousnfor@gmail.com directly.";
+          status.classList.add("is-error");
+        } finally {
+          submitButton.disabled = false;
+          submitLabel.textContent = "Send Project Enquiry";
+        }
+      });
+
+      // Helpful console warnings for missing local images
+      document.querySelectorAll("img").forEach(image => {
+        image.addEventListener("error", () => {
+          console.warn("Image not found. Check this file path:", image.getAttribute("src"));
+        });
+      });
+    });
+  </script>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/animations.js" defer></script>
+  <script src="assets/js/projects.js" defer></script>
+  <script src="assets/js/contact-form.js" defer></script>
+
+</body>
+</html>

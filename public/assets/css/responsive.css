@@ -1,0 +1,584 @@
+
+/* =========================================================
+   ARCHIMEDES~DESIGNS PORTFOLIO
+   RESPONSIVE STYLESHEET
+   Mobile / Tablet / Laptop / Desktop
+   ========================================================= */
+
+/* ---------- 1. LARGE LAPTOPS ---------- */
+
+@media (min-width: 1400px) {
+    :root {
+        --container: 1280px;
+    }
+
+    .hero {
+        min-height: 740px;
+    }
+
+    .hero h1 {
+        font-size: 5.5rem;
+    }
+}
+
+/* ---------- 2. LAPTOPS AND SMALL DESKTOPS ---------- */
+
+@media (max-width: 1100px) {
+    .primary-nav {
+        gap: 20px;
+    }
+
+    .hero {
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        letter-spacing: -2.5px;
+    }
+
+    .hero-art {
+        min-height: 390px;
+    }
+
+    .hero-monogram {
+        width: 205px;
+        height: 205px;
+        font-size: 4.5rem;
+    }
+
+    .orbit {
+        width: 340px;
+    }
+
+    .orbit-two {
+        width: 285px;
+    }
+
+    .chip-design {
+        left: 0;
+    }
+
+    .chip-code {
+        right: 0;
+    }
+
+    .about-layout {
+        gap: 45px;
+    }
+
+    .contact-section {
+        gap: 40px;
+    }
+
+    .design-gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* ---------- 3. TABLETS AND SMALL LAPTOPS ---------- */
+
+@media (max-width: 900px) {
+    :root {
+        --header-height: 74px;
+    }
+
+    .site-header {
+        padding: 14px 24px;
+    }
+
+    .nav-toggle {
+        display: grid;
+    }
+
+    .primary-nav {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        padding: 12px 24px 22px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(8, 11, 18, 0.98);
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.25);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        pointer-events: none;
+
+        transition:
+            opacity 0.25s ease,
+            visibility 0.25s ease,
+            transform 0.25s ease;
+    }
+
+    .primary-nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .primary-nav > a {
+        padding: 13px 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .primary-nav .nav-contact {
+        justify-content: center;
+        margin-top: 12px;
+        padding: 13px;
+    }
+
+    .primary-nav > a:not(.nav-contact)::after {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-top: 75px;
+        padding-bottom: 65px;
+    }
+
+    .hero-content {
+        max-width: 750px;
+    }
+
+    .hero h1 {
+        max-width: 750px;
+        font-size: clamp(3.2rem, 8vw, 5rem);
+    }
+
+    .hero-description {
+        max-width: 650px;
+    }
+
+    .hero-art {
+        min-height: 430px;
+        margin-top: 5px;
+    }
+
+    .hero-monogram {
+        width: 230px;
+        height: 230px;
+    }
+
+    .orbit {
+        width: 390px;
+    }
+
+    .orbit-two {
+        width: 320px;
+    }
+
+    .chip-design {
+        left: 12%;
+    }
+
+    .chip-code {
+        right: 10%;
+    }
+
+    .chip-media {
+        left: 15%;
+    }
+
+    .section-block {
+        padding-top: 85px;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .about-points {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mini-feature {
+        padding: 18px;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .design-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-section {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .contact-intro {
+        max-width: 700px;
+    }
+}
+
+/* ---------- 4. MOBILE PHONES ---------- */
+
+@media (max-width: 600px) {
+    .section-shell {
+        width: calc(100% - 36px);
+    }
+
+    .site-header {
+        padding: 12px 18px;
+    }
+
+    .brand {
+        gap: 8px;
+        font-size: 0.96rem;
+    }
+
+    .brand-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .primary-nav {
+        padding-inline: 18px;
+    }
+
+    .hero {
+        padding-top: 60px;
+        padding-bottom: 45px;
+        gap: 20px;
+    }
+
+    .eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+        margin-top: 20px;
+        font-size: clamp(2.65rem, 12vw, 4rem);
+        letter-spacing: -2px;
+        line-height: 1.08;
+    }
+
+    .hero-description {
+        margin-top: 20px;
+        font-size: 0.96rem;
+        line-height: 1.8;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .button {
+        width: 100%;
+        min-height: 50px;
+    }
+
+    .hero-meta {
+        gap: 12px 18px;
+        margin-top: 25px;
+        font-size: 0.78rem;
+    }
+
+    .hero-art {
+        min-height: 330px;
+        margin-inline: -8px;
+    }
+
+    .hero-monogram {
+        width: 165px;
+        height: 165px;
+        border-radius: 38px;
+        font-size: 3.8rem;
+        letter-spacing: -7px;
+    }
+
+    .orbit {
+        width: min(92%, 300px);
+    }
+
+    .orbit-two {
+        width: min(76%, 250px);
+    }
+
+    .floating-chip {
+        gap: 7px;
+        padding: 9px 11px;
+        border-radius: 9px;
+        font-size: 0.68rem;
+    }
+
+    .chip-design {
+        top: 5%;
+        left: 1%;
+    }
+
+    .chip-code {
+        top: 43%;
+        right: 0;
+    }
+
+    .chip-media {
+        bottom: 8%;
+        left: 3%;
+    }
+
+    .hero-art-caption {
+        bottom: -2px;
+        font-size: 0.68rem;
+        text-align: center;
+    }
+
+    .section-block {
+        padding-top: 70px;
+        padding-bottom: 25px;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .section-heading h2,
+    .contact-intro h2 {
+        font-size: clamp(2rem, 9vw, 2.8rem);
+        letter-spacing: -1.2px;
+    }
+
+    .section-intro {
+        margin-top: 15px;
+        font-size: 0.92rem;
+    }
+
+    .about-layout {
+        gap: 28px;
+    }
+
+    .about-copy .large-copy {
+        font-size: 1.13rem;
+    }
+
+    .about-copy > p:not(.large-copy) {
+        font-size: 0.92rem;
+    }
+
+    .about-points {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .mini-feature {
+        gap: 13px;
+        padding: 17px;
+    }
+
+    .icon-tile {
+        width: 43px;
+        height: 43px;
+        font-size: 1rem;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .service-card {
+        min-height: 240px;
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    .service-card h3 {
+        max-width: 90%;
+        font-size: 1.15rem;
+    }
+
+    .service-card p {
+        font-size: 0.88rem;
+    }
+
+    .card-number {
+        top: 27px;
+        right: 23px;
+    }
+
+    .service-card > a {
+        right: 22px;
+        bottom: 20px;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .project-placeholder {
+        min-height: 220px;
+    }
+
+    .project-card-content {
+        padding: 22px;
+    }
+
+    .gallery-toolbar {
+        gap: 8px;
+        margin-bottom: 22px;
+    }
+
+    .filter-button {
+        padding: 9px 12px;
+        font-size: 0.76rem;
+    }
+
+    .design-gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .gallery-empty {
+        min-height: 230px;
+        padding: 24px 18px;
+    }
+
+    .gallery-empty h3 {
+        font-size: 1.1rem;
+    }
+
+    .gallery-empty p {
+        font-size: 0.84rem;
+    }
+
+    .contact-section {
+        gap: 25px;
+        padding-bottom: 75px;
+    }
+
+    .contact-intro > p:not(.eyebrow) {
+        font-size: 0.93rem;
+    }
+
+    .contact-email {
+        font-size: 0.85rem;
+    }
+
+    .contact-form {
+        padding: 22px 17px;
+        border-radius: 20px;
+    }
+
+    .form-row-split {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .form-row {
+        margin-bottom: 19px;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+        padding: 13px;
+        font-size: 16px;
+    }
+
+    .site-footer {
+        grid-template-columns: 1fr auto;
+        gap: 18px 10px;
+        padding: 28px 18px;
+    }
+
+    .site-footer > p:not(.copyright) {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .footer-socials {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .site-footer .copyright {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        font-size: 0.75rem;
+    }
+
+    .error-page h1 {
+        font-size: 2.2rem;
+    }
+}
+
+/* ---------- 5. VERY SMALL PHONES ---------- */
+
+@media (max-width: 360px) {
+    .section-shell {
+        width: calc(100% - 28px);
+    }
+
+    .brand {
+        font-size: 0.86rem;
+    }
+
+    .hero h1 {
+        font-size: 2.45rem;
+    }
+
+    .hero-monogram {
+        width: 140px;
+        height: 140px;
+        font-size: 3.2rem;
+    }
+
+    .floating-chip {
+        padding: 8px 9px;
+        font-size: 0.62rem;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    .contact-form {
+        padding: 18px 13px;
+    }
+}
+
+/* ---------- 6. LANDSCAPE MOBILE ---------- */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: 45px;
+    }
+
+    .hero-art {
+        min-height: 300px;
+    }
+
+    .section-block {
+        padding-top: 60px;
+    }
+}
