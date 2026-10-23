@@ -7,13 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form || !status) return;
 
-  const submitButton = form.querySelector(".submit-button");
-  const submitLabel = form.querySelector(".submit-label");
-
-  if (!submitButton || !submitLabel) return;
-
-  const defaultButtonLabel = "Send Project Enquiry";
-
   function showStatus(message, type) {
     status.textContent = message;
     status.className = "form-status";
@@ -23,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  form.addEventListener("submit", async (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     if (!form.checkValidity()) {
@@ -31,69 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Honeypot: ignore submissions that fill the hidden field
-    const honeypot = form.querySelector('[name="website"]');
+    const data = Object.fromEntries(new FormData(form).entries());
+    const subject = `Portfolio enquiry: ${data.service}`;
+    const body = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      `Service: ${data.service}`,
+      `Budget: ${data.budget || "Not provided"}`,
+      "",
+      "Project details:",
+      data.message
+    ].join("\n");
+    const params = new URLSearchParams({ subject, body });
 
-    if (honeypot && honeypot.value.trim() !== "") {
-      showStatus(
-        "Thank you. If your enquiry is valid, it will be reviewed.",
-        "is-success"
-      );
-      form.reset();
-      return;
-    }
-
-    showStatus("", "");
-
-    submitButton.disabled = true;
-    submitLabel.textContent = "Sending...";
-
-    try {
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      let result = {};
-
-      try {
-        result = await response.json();
-      } catch {
-        // The endpoint may return an empty or non-JSON response.
-      }
-
-      if (!response.ok) {
-        throw new Error(
-          result.message ||
-          "Your enquiry could not be sent. Please try again."
-        );
-      }
-
-      showStatus(
-        result.message ||
-        "Your enquiry was submitted successfully.",
-        "is-success"
-      );
-
-      form.reset();
-    } catch (error) {
-      console.error("Contact form submission failed:", error);
-
-      showStatus(
-        error.message ||
-        "Unable to send your enquiry. Please email lamngwapreciousnfor@gmail.com directly.",
-        "is-error"
-      );
-    } finally {
-      submitButton.disabled = false;
-      submitLabel.textContent = defaultButtonLabel;
-    }
+    showStatus(
+      "Your email app should open with the enquiry ready. Review it and press Send to deliver.",
+      "is-info"
+    );
+    window.location.href =
+      `mailto:lamngwapreciousnfor@gmail.com?${params.toString()}`;
   });
 });
