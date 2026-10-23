@@ -41,22 +41,21 @@ Import the repository into Vercel and use these project settings:
 `vercel.json` also sets `public` as the output directory. For local Vercel
 development, use `vercel dev` from the repository root.
 
-### Deploy automatically from GitHub Actions
+### Automatic deployments from GitHub
 
-The workflow in `.github/workflows/deploy-vercel.yml` deploys to Vercel
-production whenever a commit is pushed to `main`. To enable it, add these
-repository secrets in GitHub under **Settings → Secrets and variables →
-Actions**:
+Use Vercel's built-in Git integration for automatic deployments. In the Vercel
+dashboard, open this project and go to **Settings → Git**. Connect the
+`arch237/Archimedes-Portfolio` GitHub repository and set `main` as the
+production branch. In **Settings → Build and Deployment**, use the repository
+root, the **Other** framework preset, no build or install command, and
+`public` as the output directory. The `vercel.json` file already sets
+`public` as the output directory.
 
-- `VERCEL_TOKEN`: a Vercel access token.
-- `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`: the IDs from the linked Vercel
-  project's **Settings → General** page (or the corresponding `.vercel/project.json`
-  created by running `vercel link` locally).
-
-The Vercel project must already exist and be linked to this repository's
-project settings. Once the secrets are configured, push changes to `main` to
-start a production deployment. The custom domain remains configured on the
-Vercel project and will serve successful production deployments automatically.
+Once connected, Vercel deploys each push to `main` to production and
+automatically serves it on the domain assigned to this project. Pushes to
+other branches create Preview deployments. No Vercel token or GitHub Actions
+secrets are needed. If the project is already connected, verify that its Git
+repository is this repository and its production branch is `main`.
 
 ## Auto-commit
 
